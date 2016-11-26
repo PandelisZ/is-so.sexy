@@ -226,6 +226,11 @@ rooter.get('/auth/pinterest/callback', passport.authorize('pinterest', { failure
 });
 
 /**
+ * subrouter routes
+ */
+subrouter.get('/lol', (req, res) => res.send('should not work on root lol'));
+
+/**
  * Error Handler.
  */
 app.use(errorHandler());
