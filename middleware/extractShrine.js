@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
 
 		if (docs.length === 0) return res.redirect('/manage');
 
-		res.shrines = docs;
+		req.shrines = docs;
 
 		return next();
 	});
