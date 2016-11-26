@@ -58,11 +58,6 @@ mongoose.connection.on('error', () => {
   process.exit();
 });
 
-app.use((req, res, next) => {
-	console.log(req.subdomains);
-	next();
-});
-
 /**
  * Express configuration.
  */
