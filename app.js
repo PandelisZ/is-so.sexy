@@ -32,6 +32,7 @@ dotenv.load({ path: '.env.example' });
  */
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
+const generatorController = require('./controllers/generator');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
 
@@ -110,7 +111,7 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+app.use(express.static(path.join(__dirname, 'public'), { /*maxAge: 31557600000*/ }));
 
 /**
  * Primary app routes.
@@ -128,6 +129,9 @@ app.post('/signup', userController.postSignup);
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
+app.get('/generator', generatorController.newShrine);
+app.post('/generator/create', generatorController.createShrine)
+//app.post('/generator/create', generatorController.createShrine);
 app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
