@@ -22,6 +22,8 @@ const multer = require('multer');
 
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
 
+const extractShrine = require('../middleware/extractShrine');
+
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
@@ -112,6 +114,8 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.static(path.join(__dirname, 'public'), { /*maxAge: 31557600000*/ }));
+
+app.use('/', extractShrine);
 
 /**
  * Primary app routes.
