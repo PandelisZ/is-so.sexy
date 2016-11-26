@@ -3,7 +3,7 @@
  * Home page.
  */
 exports.index = (req, res) => {
-	console.log(req.shrines);
+	console.log(req.shrine);
   res.render('home', {
     title: 'Home'
   });
