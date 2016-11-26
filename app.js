@@ -115,12 +115,10 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, 'public'), { /*maxAge: 31557600000*/ }));
 
-app.use('/', extractShrine);
-
 /**
  * Primary app routes.
  */
-app.get('/', homeController.index);
+app.get('/', extractShrine, homeController.index);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
