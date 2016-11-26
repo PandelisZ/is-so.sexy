@@ -23,7 +23,16 @@ const userSchema = new mongoose.Schema({
     location: String,
     website: String,
     picture: String
-  }
+  },
+
+  shrines: [
+    {
+      name: String,
+      description: String,
+      images: [String],
+      subUrl: String,
+    }
+  ]
 }, { timestamps: true });
 
 /**

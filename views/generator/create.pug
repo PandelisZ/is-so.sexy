@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Profile Information
+
+  form.form-horizontal(action='/generator/create', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label.col-sm-3.control-label(for='name') Name
+      .col-sm-7
+        input.form-control(type='text', name='name', id='name')
+    .form-group
+      label.col-sm-3.control-label(for='description') Description
+      .col-sm-7
+        input.form-control(type='text', name='description', id='description')
+    .form-group
+      label.col-sm-3.control-label(for='subdomain') Subdomain
+      .col-sm-7
+        input.form-control(type='text', name='subdomain', id='subdomain')
+
+    
+    .form-group
+      label.col-sm-3.control-label Gravatar
+      .col-sm-4
+        img(src=user.gravatar(), class='profile', width='100', height='100')
+    .form-group
+      .col-sm-offset-3.col-sm-4
+        button.btn.btn.btn-primary(type='submit')
+          i.fa.fa-pencil
+          | Update Profile
