@@ -4,6 +4,9 @@ const nodemailer = require('nodemailer');
 const passport = require('passport');
 const User = require('../models/User');
 const Shrine = require('../models/Shrine');
+const multer = require('multer');
+const path = require('path');
+const upload = multer({ dest: path.join(__dirname, '../uploads') }).array('images');
 
 /**
  * GET /login
@@ -34,19 +37,37 @@ exports.newShrine = (req, res) => {
  */
 exports.createShrine = (req, res, next) => {
 
-  const shrine = new Shrine({
-    name: req.body.name,
-    description: req.body.description,
-    images: ['https://i.imgur.com/j1ajbxW.jpg', 'https://i.imgur.com/c11oVjq.jpg'],
-    subdomain: req.body.subdomain,
-  });
+  upload(req, res, (err) => {
+    if(err){
+      console.log('shit done fucked mate')
 
-  shrine.save((err, shrine) => {
-      if (err) { console.log(err) }
+      return
+    }
 
-        res.redirect('/');
+    console.log('upload successfull')
 
+    let files = req.files.map(f => f.filename);
+
+    const shrine = new Shrine({
+      name: req.body.name,
+      description: req.body.description,
+      images: files,
+      subdomain: req.body.subdomain,
     });
+
+
+    shrine.save((err, shrine) => {
+        if (err) { console.log(err) }
+
+          res.redirect('/');
+
+      });
+
+
+
+  })
+
+
 };
 
 /**
