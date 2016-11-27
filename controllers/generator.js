@@ -54,6 +54,7 @@ console.log(req.user.id)
       description: req.body.description,
       images: files,
       subdomain: req.body.subdomain,
+      music: req.body.music,
       owner: req.user.id
     });
 
