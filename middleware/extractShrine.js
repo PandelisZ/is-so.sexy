@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
 	return Shrine.findOne({ subdomain: firstSub }, (err, doc) => {
 		if (err) return res.status(503).send("DB down or something lol");
 
-		if (!doc & firstSub === []) return res.redirect('/manage');
+		if (!doc & firstSub !== undefined) return res.redirect('/generator');
 
 		req.shrine = doc;
 
