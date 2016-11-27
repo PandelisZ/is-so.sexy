@@ -36,8 +36,9 @@ exports.newShrine = (req, res) => {
  * Update profile information.
  */
 exports.createShrine = (req, res, next) => {
-
+console.log(req.user.id)
   upload(req, res, (err) => {
+
     if(err){
       console.log('shit done fucked mate')
 
@@ -53,6 +54,7 @@ exports.createShrine = (req, res, next) => {
       description: req.body.description,
       images: files,
       subdomain: req.body.subdomain,
+      owner: req.user.id
     });
 
 
