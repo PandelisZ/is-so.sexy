@@ -6,6 +6,7 @@
 exports.index = (req, res) => {
 	console.log(req.shrine);
 
+
 	if(req.shrine){
 		let shrine = req.shrine
 		let uploads = shrine.images.map((img)=>{

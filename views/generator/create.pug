@@ -17,11 +17,25 @@ block content
     .form-group
       label.col-sm-3.control-label(for='subdomain') Subdomain
       .col-sm-7
-        input.form-control(type='text', name='subdomain', id='subdomain')
+        input.form-control(type='text', name='subdomain', id='subdomain', value=thispage)
 
     .form-group
       label.control-label Image Upload
       input(type='file', name='images', id='images', multiple)
+      
+    .form-group  
+      label.col-sm-3.control-label(for='music') Music
+    
+      .col-sm-7
+        .radio
+          input(type='radio', name='music', id='music', value='audio') 
+          | Audio
+        .radio
+          input(type='radio', name='music', id='music', value='audio2') 
+          | Audio2
+        .radio
+          input(type='radio', name='music', id='music', value='audio3') 
+          | Audio3
     
     .form-group
       .col-sm-offset-3.col-sm-4

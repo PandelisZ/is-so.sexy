@@ -26,8 +26,10 @@ exports.getLogin = (req, res) => {
  * Profile page.
  */
 exports.newShrine = (req, res) => {
+
   res.render('generator/create', {
-    title: 'Create a new Shrine'
+    title: 'Create a new Shrine',
+    thispage: req.subdomains[0] || ''
   });
 };
 
@@ -37,6 +39,7 @@ exports.newShrine = (req, res) => {
  */
 exports.createShrine = (req, res, next) => {
 console.log(req.user.id)
+
   upload(req, res, (err) => {
 
     if(err){
@@ -54,6 +57,7 @@ console.log(req.user.id)
       description: req.body.description,
       images: files,
       subdomain: req.body.subdomain,
+      music: req.body.music,
       owner: req.user.id
     });
 

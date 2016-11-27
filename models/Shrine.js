@@ -6,6 +6,7 @@ const shrineSchema = new mongoose.Schema({
   description: String,
   images: [String],
   subdomain: String,
+  music: String,
   owner: String
 }, { timestamps: true });
 
