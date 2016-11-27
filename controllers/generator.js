@@ -27,7 +27,8 @@ exports.getLogin = (req, res) => {
  */
 exports.newShrine = (req, res) => {
   res.render('generator/create', {
-    title: 'Create a new Shrine'
+    title: 'Create a new Shrine',
+    thispage: req.subdomains[0] || ''
   });
 };
 
