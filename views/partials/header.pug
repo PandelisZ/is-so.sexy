@@ -13,8 +13,10 @@
       ul.nav.navbar-nav
         li(class=(title == 'Home') ? 'active' : undefined)
           a(href='/') Home
-        li(class=(title == 'API Examples') ? 'active' : undefined)
+        li(class=(title == 'New Shrine') ? 'active' : undefined)
           a(href='/generator') New Shrine
+        li(class=(title == 'Manage') ? 'active' : undefined)
+          a(href='/manage') Manage
       ul.nav.navbar-nav.navbar-right
         if !user
           li(class=(title == 'Login') ? 'active' : undefined)

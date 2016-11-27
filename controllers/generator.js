@@ -8,18 +8,6 @@ const multer = require('multer');
 const path = require('path');
 const upload = multer({ dest: path.join(__dirname, '../uploads') }).array('images');
 
-/**
- * GET /login
- * Login page.
- */
-exports.getLogin = (req, res) => {
-  if (req.user) {
-    return res.redirect('/');
-  }
-  res.render('account/login', {
-    title: 'Login'
-  });
-};
 
 /**
  * GET /generator
@@ -66,10 +54,21 @@ console.log(req.user.id)
           res.redirect('/');
 
       });
-
-
-
   })
+};
 
-
+/**
+ * GET /manage/
+ * See list of shrines
+ */
+exports.createShrine = (req, res, next) => {
+  res.render('generator/manage', {
+    title: 'My shrines',
+    shrines: [
+      {name: 'test', description: 'thing'},
+      {name: 'test', description: 'thing'},
+      {name: 'test', description: 'thing'},
+      {name: 'test', description: 'thing'},
+    ]
+  })
 };
