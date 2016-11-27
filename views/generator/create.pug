@@ -2,22 +2,23 @@ extends ../layout
 
 block content
   .page-header
-    h3 Profile Information
+    h3 Shrine Configuration
 
   form.form-horizontal(action='/generator/create', enctype='multipart/form-data', method='POST')
     input(type='hidden', name='_csrf', value=_csrf)
+    input(type='hidden', name='_id', value=_id)
     .form-group
       label.col-sm-3.control-label(for='name') Name
       .col-sm-7
-        input.form-control(type='text', name='name', id='name')
+        input.form-control(type='text', name='name', id='name', value=name)
     .form-group
       label.col-sm-3.control-label(for='description') Description
       .col-sm-7
-        input.form-control(type='text', name='description', id='description')
+        input.form-control(type='text', name='description', id='description', value=description)
     .form-group
       label.col-sm-3.control-label(for='subdomain') Subdomain
       .col-sm-7
-        input.form-control(type='text', name='subdomain', id='subdomain', value=thispage)
+        input.form-control(type='text', name='subdomain', id='subdomain', value=subdomain)
 
     .form-group
       label.control-label Image Upload
