@@ -16,7 +16,10 @@ const upload = multer({ dest: path.join(__dirname, '../uploads') }).array('image
 exports.newShrine = (req, res) => {
   res.render('generator/create', {
     title: 'Create a new Shrine',
-    thispage: req.subdomains[0] || ''
+    name: '',
+    description: '',
+    subdomain: req.subdomains[0] || '',
+    _id: null
   });
 };
 
@@ -38,22 +41,39 @@ console.log(req.user.id)
 
     let files = req.files.map(f => f.filename);
 
-    const shrine = new Shrine({
-      name: req.body.name,
-      description: req.body.description,
-      images: files,
-      subdomain: req.body.subdomain,
-      music: req.body.music,
-      owner: req.user.id
-    });
-
-
-    shrine.save((err, shrine) => {
-        if (err) { console.log(err) }
-
-          res.redirect('/');
-
+    if (req.body._id === null){
+      const shrine = new Shrine({
+        name: req.body.name,
+        description: req.body.description,
+        images: files,
+        subdomain: req.body.subdomain,
+        music: req.body.music,
+        owner: req.user.id
       });
+
+
+      shrine.save((err, shrine) => {
+          if (err) { console.log(err) }
+
+            res.redirect('/');
+
+        });
+
+    }else{
+
+      Shrine.update({ _id: req.body._id }, { $set: {
+        name: req.body.name,
+        description: req.body.description,
+        images: files,
+        subdomain: req.body.subdomain,
+        music: req.body.music,
+      }}, () => {
+        res.redirect('/')
+      });
+
+    }
+
+
   })
 };
 
@@ -74,11 +94,31 @@ exports.listShrines = (req, res, next) => {
       title: 'My shrines',
       shrines: shrine
     })
-
-
-
   })
-
-
-
 };
+
+/**
+ * GET /manage/:shrine
+ * See list of shrines
+ */
+exports.editShrine = (req, res, next) => {
+  let shrineID = req.params.shrine
+
+  Shrine.findOne({ _id: shrineID }, (err, doc) => {
+    if (err) return res.status(503).send("DB down or something lol");
+
+    if (!doc & shrineID !== undefined) return res.redirect('/generator');
+
+    res.render('generator/create', {
+      title: 'Create a new Shrine',
+      name: doc.name,
+      description: doc.description,
+      subdomain: doc.subdomain,
+      _id: doc._id
+    });
+  });
+
+
+
+
+}

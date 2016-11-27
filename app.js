@@ -135,6 +135,7 @@ app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
 app.get('/generator', passportConfig.isAuthenticated, generatorController.newShrine);
 app.post('/generator/create', passportConfig.isAuthenticated, generatorController.createShrine)
 app.get('/manage/', passportConfig.isAuthenticated, generatorController.listShrines);
+app.get('/manage/:shrine', passportConfig.isAuthenticated, generatorController.editShrine);
 app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
