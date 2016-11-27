@@ -61,14 +61,24 @@ console.log(req.user.id)
  * GET /manage/
  * See list of shrines
  */
-exports.createShrine = (req, res, next) => {
-  res.render('generator/manage', {
-    title: 'My shrines',
-    shrines: [
-      {name: 'test', description: 'thing'},
-      {name: 'test', description: 'thing'},
-      {name: 'test', description: 'thing'},
-      {name: 'test', description: 'thing'},
-    ]
+exports.listShrines = (req, res, next) => {
+
+  var myShrines = Shrine.find({
+  'owner': req.user.id
   })
+
+  myShrines.exec( (err, shrine) => {
+    if (err) return
+    console.log(shrine)
+    res.render('generator/manage', {
+      title: 'My shrines',
+      shrines: shrine
+    })
+
+
+
+  })
+
+
+
 };

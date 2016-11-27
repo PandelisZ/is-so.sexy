@@ -4,7 +4,15 @@ block content
   .page-header
     h3 My Shrines
     
-    .list-group
-      a.list-group-item.active(href='#')
-        h4.list-group-item-heading yay
-        p.list-group-item-text hello
+  .list-group
+    for shrine in shrines
+      a.list-group-item(href='/manage/' + shrine._id)
+        h4.list-group-item-heading #{shrine.name}
+        p.list-group-item-text #{shrine.description}
+        p.list-group-item-text 
+          code #{shrine.subdomain}
+          |.is-so.sexy
+    else
+      h2 sorry, no shrines
+
+    
