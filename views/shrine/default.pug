@@ -111,13 +111,17 @@ block content
     margin-left: auto;
     margin-right: auto;
     }
-    
+
   article(class='intense noshow')
   .start
     .pandelis
     p.text click to begin
-  
-  
+  .cats {
+  	position: absolute;
+  	transition: 10s;
+  }
+
+
 
 
   script.
@@ -165,13 +169,13 @@ block content
       var i = new Image();
       i.src = url;
     });
-    
-    document.addEventListener("DOMContentLoaded", function(event) { 
+
+    document.addEventListener("DOMContentLoaded", function(event) {
       start();
     });
     })();
 
-    
+
   script.
       // <![CDATA[
     var colours=new Array('#f00', '#f06', '#f0f', '#f6f', '#f39', '#f9c'); // colours of the hearts
