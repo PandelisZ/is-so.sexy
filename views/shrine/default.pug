@@ -105,7 +105,7 @@ block content
     top: -70px;
     right: 0px;
     }
-    .pandelis {
+    .shrine {
     width: 500px;
     max-width: 500px;
     margin-left: auto;
@@ -113,8 +113,10 @@ block content
     }
     
   article(class='intense noshow')
+  audio(class='audio noshow')
+    source(src=music type="audio/mpeg")
   .start
-    .pandelis
+    .shrine
     p.text click to begin
   
   
@@ -154,12 +156,13 @@ block content
     }
     function start() {
       shuffle(images);
+      musicElem.play();
       document.querySelector('.start').className = 'start noshow';
       try { ga('send', 'event', 'media', 'play'); } catch (e) {}
       intenseElem.className = 'intense';
       setTimeout(changeImage, 2000);
     }
-    document.querySelector('.pandelis').onclick = start;
+    document.querySelector('.shrine').onclick = start;
     document.querySelector('.text').onclick = start;
     images.map(function(url) {
       var i = new Image();
